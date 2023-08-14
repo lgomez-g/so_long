@@ -1,32 +1,24 @@
-SRCS	= ${wildcard SRCS/*.c} ${wildcard SRCS/*/*.c} ${wildcard SRCS/*/*/*.c}
-
-NAME	= snake
-
-OBJ		= ${SRCS:.c=.o}
-
-CC		= gcc
-
-CFLAGS	= -Wall -Werror -Wextra -g -O3 -fsanitize=address
+SRCS_DIR = SRCS
+SRCS = $(wildcard $(SRCS_DIR)/*.c)
+OBJ = $(SRCS:.c=.o)
+NAME = so_long
+CC = gcc
+CFLAGS = -Wall -Werror -Wextra -g -O3 -fsanitize=address
+LIBS = -Lmlx_linux -lmlx_Linux -L/usr/lib -lXext -lX11 -lm -lz
+INCLUDES = -Imlx_linux
 
 all: $(NAME)
 
 %.o: %.c
-	$(CC) -Wall -Wextra -Werror -I/usr/include -Imlx_linux -O3 -c $< -o $@
+	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
 $(NAME): $(OBJ)
-	$(CC) $(CFLAGS) $(OBJ) -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -o $(NAME)
+	$(CC) $(OBJ) $(LIBS) -o $(NAME)
 
 clean:
-	rm -rf ${OBJ}
+	rm -rf $(OBJ)
 
 fclean: clean
-	rm -rf ${NAME}
-
-norm:
-	norminette -R CheckForbiddenSourceHeader SRCS/*
-	norminette -R CheckDefine INCS/*
-
-r:
-	make re && clear && ./snake
+	rm -rf $(NAME)
 
 re: fclean all
