@@ -6,7 +6,7 @@
 /*   By: lgomez-g <lgomez-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 20:42:08 by mvenanci@st       #+#    #+#             */
-/*   Updated: 2023/08/15 19:02:27 by lgomez-g         ###   ########.fr       */
+/*   Updated: 2023/08/15 19:25:25 by lgomez-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ struct s_game
 	void	*img_collectible;
 	void	*img_player;
 	void	*img_exit;
+	//int		player_x;
 	int 	width;
 	int		height;
 	char 	*map[6];
@@ -56,13 +57,15 @@ int	ft_render(t_game *a)
 			if (a->map[y][x] == 'C')
 				mlx_put_image_to_window(a->mlx, a->windows, a->img_collectible, x  * 32, y * 32);
 			if (a->map[y][x] == 'P')
-				mlx_put_image_to_window(a->mlx, a->windows, a->img_player, x  * 32, y * 32);
+				mlx_put_image_to_window(a->mlx, a->windows, a->img_background, x  * 32, y * 32);
 			if (a->map[y][x] == 'E')
 				mlx_put_image_to_window(a->mlx, a->windows, a->img_exit, x  * 32, y * 32);
 			x++;
 		}
 		y++;
 	}
+
+	mlx_put_image_to_window(a->mlx, a->windows, a->img_player, 0  * 32, 0 * 32);
 	return (0);
 }
 
@@ -76,10 +79,6 @@ int	main(void)
 	a.map[2] = "100P00E001";
 	a.map[3] = "10C010C011";
 	a.map[4] = "1111111111";
-
-	game()->img_wall;
-	
-
 
 	a.mlx = mlx_init();
 	a.windows = mlx_new_window(a.mlx, 320, 160, "Game");
