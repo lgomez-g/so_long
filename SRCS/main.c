@@ -6,7 +6,7 @@
 /*   By: lgomez-g <lgomez-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 20:42:08 by mvenanci@st       #+#    #+#             */
-/*   Updated: 2023/08/15 16:21:26 by lgomez-g         ###   ########.fr       */
+/*   Updated: 2023/08/15 19:02:27 by lgomez-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,19 @@ struct s_game
 	void 	*img_wall;
 	void	*img_background;
 	void	*img_collectible;
+	void	*img_player;
+	void	*img_exit;
 	int 	width;
 	int		height;
 	char 	*map[6];
 };
+
+t_game *game(void)
+{
+	static t_game game_var;
+	
+	return(&game_var);
+}
 
 
 int	ft_render(t_game *a)
@@ -46,6 +55,10 @@ int	ft_render(t_game *a)
 				mlx_put_image_to_window(a->mlx, a->windows, a->img_background, x  * 32, y * 32);
 			if (a->map[y][x] == 'C')
 				mlx_put_image_to_window(a->mlx, a->windows, a->img_collectible, x  * 32, y * 32);
+			if (a->map[y][x] == 'P')
+				mlx_put_image_to_window(a->mlx, a->windows, a->img_player, x  * 32, y * 32);
+			if (a->map[y][x] == 'E')
+				mlx_put_image_to_window(a->mlx, a->windows, a->img_exit, x  * 32, y * 32);
 			x++;
 		}
 		y++;
@@ -59,10 +72,13 @@ int	main(void)
 	static t_game	a;
 
 	a.map[0] = "1111111111";
-	a.map[1] = "10000000E1";
-	a.map[2] = "100P000001";
+	a.map[1] = "1000000001";
+	a.map[2] = "100P00E001";
 	a.map[3] = "10C010C011";
 	a.map[4] = "1111111111";
+
+	game()->img_wall;
+	
 
 
 	a.mlx = mlx_init();
@@ -70,6 +86,8 @@ int	main(void)
 	a.img_wall = mlx_xpm_file_to_image(a.mlx, "images/wall.xpm", &a.width, &a.height);
 	a.img_background =  mlx_xpm_file_to_image(a.mlx, "images/background.xpm", &a.width, &a.height);
 	a.img_collectible =  mlx_xpm_file_to_image(a.mlx, "images/collectible.xpm", &a.width, &a.height);
+	a.img_player =  mlx_xpm_file_to_image(a.mlx, "images/player.xpm", &a.width, &a.height);
+	a.img_exit =  mlx_xpm_file_to_image(a.mlx, "images/exit.xpm", &a.width, &a.height);
 	mlx_loop_hook(a.mlx, ft_render, &a);
 	mlx_loop(a.mlx);
 }
