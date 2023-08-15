@@ -1,24 +1,32 @@
-SRCS_DIR = SRCS
-SRCS = $(wildcard $(SRCS_DIR)/*.c)
-OBJ = $(SRCS:.c=.o)
 NAME = so_long
+SRCS_DIR = SRCS
+OBJS_DIR = OBJS
+
+SRCS = $(wildcard $(SRCS_DIR)/*.c)
+OBJS = $(addprefix $(OBJS_DIR)/,$(notdir $(SRCS:.c=.o)))
+
 CC = gcc
-CFLAGS = -Wall -Werror -Wextra -g -O3 -fsanitize=address
+CFLAGS = -Wall -Wextra -Werror
 LIBS = -Lmlx_linux -lmlx_Linux -L/usr/lib -lXext -lX11 -lm -lz
 INCLUDES = -Imlx_linux
 
 all: $(NAME)
 
-%.o: %.c
+$(OBJS_DIR)/%.o: $(SRCS_DIR)/%.c | $(OBJS_DIR)
 	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
-$(NAME): $(OBJ)
-	$(CC) $(OBJ) $(LIBS) -o $(NAME)
+$(NAME): $(OBJS)
+	$(CC) $(CFLAGS) $(OBJS) $(LIBS) -o $@
+
+$(OBJS_DIR):
+	mkdir -p $@
 
 clean:
-	rm -rf $(OBJ)
+	rm -rf $(OBJS_DIR)
 
 fclean: clean
-	rm -rf $(NAME)
+	rm -f $(NAME)
 
 re: fclean all
+
+.PHONY: all clean fclean re
