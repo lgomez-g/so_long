@@ -3,43 +3,29 @@
 /*                                                        :::      ::::::::   */
 /*   graphic_management.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: franciscogomez <franciscogomez@student.42. +#+  +:+       +#+        */
+/*   By: lgomez-g <lgomez-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 18:31:06 by franciscogomez    #+#    #+#             */
-/*   Updated: 2023/08/16 18:52:59 by franciscogomez   ###   ########.fr       */
+/*   Updated: 2023/08/17 16:42:22 by lgomez-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
-#include <mlx.h>
-#include <stdlib.h>
+#include "../graphic_management.h"
 
-/*void handle_smooth_window_management(void *mlx)
+
+void	handle_esc(t_game *game)
 {
-    void *window2;
-
-    window2 = mlx_new_window(mlx, 800, 600, "Another Window");
-
-    usleep(2000000); // Wait for 2 seconds
-
-    mlx_clear_window(mlx, window2);
-    mlx_string_put(mlx, window2, 100, 100, 0xFFFFFF, "Minimized Window");
-
-    mlx_loop(mlx);
-}*/
-
-void handle_esc_key(int keycode, void *param)
-{
-    if (keycode == 27)  // 27 es el código de ESC
-    {
-        mlx_destroy_window(param, window);
-        exit(0);
-    }
+	(void) game;
+	printf("handle_esc\n");
+	exit(0);
 }
 
-int handle_close_window(void *param)
+void	handle_esc_key(int keycode, t_game *game)
 {
-    mlx_destroy_window(param, window);
-    exit(0);
-    return 0;
+	printf("handle_esc_key: %i\n", keycode);
+    if (keycode == 65307)  // 27 es el código de ESC
+    {
+        mlx_destroy_window(game->mlx, game->windows);
+        exit(0);
+    }
 }

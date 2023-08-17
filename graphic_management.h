@@ -1,23 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   graphic_management.h                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: franciscogomez <franciscogomez@student.42. +#+  +:+       +#+        */
+/*   By: lgomez-g <lgomez-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 18:25:26 by franciscogomez    #+#    #+#             */
-/*   Updated: 2023/08/16 18:25:29 by franciscogomez   ###   ########.fr       */
+/*   Updated: 2023/08/17 16:32:32 by lgomez-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-#define SO_LONG_H
+#ifndef GRAPHIC_MANAGEMENT_H
+# define GRAPHIC_MANAGEMENT_H
 
+#include <stdlib.h>
 #include <mlx.h>
+#include <stdio.h>
 
-void handle_smooth_window_management(void *mlx);
-void handle_esc_key(int keycode, void *param);
-int handle_close_window(void *param);
+typedef struct s_game	t_game;
+
+struct s_game
+{
+	void	*mlx;
+	void	*windows;
+	void 	*img_wall;
+	void	*img_background;
+	void	*img_collectible;
+	void	*img_player;
+	void	*img_exit;
+	int 	width;
+	int		height;
+	char 	*map[6];
+};
+
+void	handle_esc(t_game *game);
+
+void handle_esc_key(int keycode, t_game *game);
 
 #endif
-

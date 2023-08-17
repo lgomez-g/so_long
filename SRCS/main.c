@@ -3,33 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: franciscogomez <franciscogomez@student.42. +#+  +:+       +#+        */
+/*   By: lgomez-g <lgomez-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 20:42:08 by mvenanci@st       #+#    #+#             */
-/*   Updated: 2023/08/16 18:57:55 by franciscogomez   ###   ########.fr       */
+/*   Updated: 2023/08/17 16:37:43 by lgomez-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "../graphic_management.h"
 
-#include <mlx.h>
-#include <stdio.h>
-#include "so_long.h"
-
-typedef struct s_game	t_game;
-
-struct s_game
-{
-	void	*mlx;
-	void	*windows;
-	void 	*img_wall;
-	void	*img_background;
-	void	*img_collectible;
-	void	*img_player;
-	void	*img_exit;
-	int 	width;
-	int		height;
-	char 	*map[6];
-};
 
 
 int	ft_render(t_game *a)
@@ -57,7 +39,7 @@ int	ft_render(t_game *a)
 		}
 		y++;
 	}
-
+	printf("a\n");
 	mlx_put_image_to_window(a->mlx, a->windows, a->img_player, 0  * 32, 0 * 32);
 	return (0);
 }
@@ -80,11 +62,8 @@ int	main(void)
 	a.img_collectible =  mlx_xpm_file_to_image(a.mlx, "images/collectible.xpm", &a.width, &a.height);
 	a.img_player =  mlx_xpm_file_to_image(a.mlx, "images/player.xpm", &a.width, &a.height);
 	a.img_exit =  mlx_xpm_file_to_image(a.mlx, "images/exit.xpm", &a.width, &a.height);
-	
-	mlx_key_hook(a.windows, handle_esc_key, &a);  // Set up ESC key handling
-	mlx_hook(a.windows, 33, 0, handle_close_window, &a); // Set up window close handling
-	
-	//mlx_loop_hook(a.mlx, handle_smooth_window_management, &a);  // Set up smooth window management
+	mlx_hook(a.windows, 17, 0, (void *) handle_esc, &a);
+	mlx_key_hook(a.windows, (void *) handle_esc_key, &a);// Set up ESC key handling
 	mlx_loop_hook(a.mlx, ft_render, &a); 
 	mlx_loop(a.mlx);
 }

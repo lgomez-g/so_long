@@ -6,9 +6,9 @@ SRCS = $(wildcard $(SRCS_DIR)/*.c)
 OBJS = $(addprefix $(OBJS_DIR)/,$(notdir $(SRCS:.c=.o)))
 
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror 
 LIBS = -Lmlx_linux -lmlx_Linux -L/usr/lib -lXext -lX11 -lm -lz
-INCLUDES = -Imlx_linux
+INCLUDES = -Imlx_linux 
 
 all: $(NAME)
 
