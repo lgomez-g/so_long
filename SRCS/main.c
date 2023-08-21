@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lgomez-g <lgomez-g@student.42.fr>          +#+  +:+       +#+        */
+/*   By: franciscogomez <franciscogomez@student.42. +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 20:42:08 by mvenanci@st       #+#    #+#             */
-/*   Updated: 2023/08/17 16:37:43 by lgomez-g         ###   ########.fr       */
+/*   Updated: 2023/08/21 13:57:19 by franciscogomez   ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,9 @@ int	main(void)
 {
 	static t_game	a;
 
+	a.player_x = 1; // Coordenada X
+    a.player_y = 2; // Coordenada Y
+
 	a.map[0] = "1111111111";
 	a.map[1] = "1000000001";
 	a.map[2] = "100P00E001";
@@ -62,8 +65,8 @@ int	main(void)
 	a.img_collectible =  mlx_xpm_file_to_image(a.mlx, "images/collectible.xpm", &a.width, &a.height);
 	a.img_player =  mlx_xpm_file_to_image(a.mlx, "images/player.xpm", &a.width, &a.height);
 	a.img_exit =  mlx_xpm_file_to_image(a.mlx, "images/exit.xpm", &a.width, &a.height);
-	mlx_hook(a.windows, 17, 0, (void *) handle_esc, &a);
-	mlx_key_hook(a.windows, (void *) handle_esc_key, &a);// Set up ESC key handling
+	mlx_hook(a.windows, 17, 0, (void *) handle_x, &a);
+	mlx_key_hook(a.windows, (void *) handle_key, &a);// Key handling
 	mlx_loop_hook(a.mlx, ft_render, &a); 
 	mlx_loop(a.mlx);
 }
