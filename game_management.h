@@ -1,18 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   graphic_management.h                               :+:      :+:    :+:   */
+/*   game_management.h                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lgomez-g <lgomez-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/16 18:25:26 by franciscogomez    #+#    #+#             */
-/*   Updated: 2023/08/23 09:48:31 by lgomez-g         ###   ########.fr       */
+/*   Created: 2023/08/23 09:34:49 by lgomez-g          #+#    #+#             */
+/*   Updated: 2023/08/23 15:35:57 by lgomez-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GRAPHIC_MANAGEMENT_H
-# define GRAPHIC_MANAGEMENT_H
-
+#ifndef GAME_MANAGEMENT_H
+# define GAME_MANAGEMENT_H
 
 #include <stdlib.h>
 #include <mlx.h>
@@ -36,12 +35,13 @@ struct s_game
     int     player_x;    // Posición del jugador en el eje X
     int     player_y;    // Posición del jugador en el eje Y
     int     movements;   // Número de movimientos del jugador
-	int		collected_objects; // Collectibles Collected
+	int		collected_objects;   // Collectibles Collected
 	int		total_collectibles; // Se calcula al principio
 };
 
 
-void	handle_x(t_game *game);
-int	ft_render(t_game *a);
+static void	move_player(t_game *game, int new_x, int new_y);
+int calcular_total_collectibles(char **map);
+int handle_key(int keycode, t_game *game);
 
 #endif

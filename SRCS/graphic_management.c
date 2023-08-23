@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: lgomez-g <lgomez-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/16 18:31:06 by franciscogomez    #+#    #+#             */
-/*   Updated: 2023/08/22 13:28:05 by lgomez-g         ###   ########.fr       */
+/*   Created: 2023/08/23 09:21:32 by lgomez-g          #+#    #+#             */
+/*   Updated: 2023/08/23 15:37:35 by lgomez-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,64 +19,32 @@ void	handle_x(t_game *game)	// Para salir con la cruz
 	exit(0);
 }
 
-static void	move_player(t_game *game, int new_x, int new_y)
+int	ft_render(t_game *a)
 {
+	int y;
+	int x;
 
-	if ( game->map[new_y][new_x] != '1')
+	y = 0;
+	while(a->map[y])
 	{
-		if ( game->map[new_y][new_x] == 'C')
+		x = 0;
+		while(a->map[y][x])
 		{
-			game->map[new_y][new_x] = '0';
-			printf("C\n");
-			game->collected_objects++;
-		}
-		game->player_x = new_x;
-		game->player_y = new_y;
-		game->movements++;
-		if (game->collected_objects == game->total_collectibles && game->map[game->player_y][game->player_x] == 'E')
-		{
-                    printf("¡You Win!\n");
-                    mlx_destroy_window(game->mlx, game->windows);
-                    exit(0);
-        }
-	}
-}
-
-int handle_key(int keycode, t_game *game)
-{
-	if (keycode == 65307) // Código de la tecla Esc
-	{
-		mlx_destroy_window(game->mlx, game->windows);
-	 	exit(0);
- 	}
-	if (keycode == 119) // Tecla W (arriba)
-		move_player(game, game->player_x, game->player_y - 1);
-	else if (keycode == 115) // Tecla S (abajo)
-		move_player(game, game->player_x, game->player_y + 1);
-	else if (keycode == 97) // Tecla A (izquierda)
-		move_player(game, game->player_x - 1, game->player_y);
-	else if (keycode == 100) // Tecla D (derecha)
-		move_player(game, game->player_x + 1, game->player_y);
-	return (0);
-}
-
-int calcular_total_collectibles(char **map)
-{
-	int total_collectibles = 0; 
-
-	int y = 0;
-	while(map[y]) // Cambia "a->map[y]" a "map[y]"
-	{
-		int x = 0;
-		while(map[y][x])
-		{
-			if (map[y][x] == 'C')
-				total_collectibles++;
-			
-			x++; 
+			if (a->map[y][x] == '1')
+				mlx_put_image_to_window(a->mlx, a->windows, a->img_wall, x  * 32, y * 32);
+			else if (a->map[y][x] == '0')
+				mlx_put_image_to_window(a->mlx, a->windows, a->img_background, x  * 32, y * 32);
+			else if (a->map[y][x] == 'C')
+				mlx_put_image_to_window(a->mlx, a->windows, a->img_collectible, x  * 32, y * 32);
+			else if (a->map[y][x] == 'P')
+				mlx_put_image_to_window(a->mlx, a->windows, a->img_background, x  * 32, y * 32);
+			else if (a->map[y][x] == 'E')
+				mlx_put_image_to_window(a->mlx, a->windows, a->img_exit, x  * 32, y * 32);
+			x++;
 		}
 		y++;
 	}
-
-	return total_collectibles; 
+	mlx_put_image_to_window(a->mlx, a->windows, a->img_player, a->player_x  * 32, a->player_y * 32);
+	return (0);
 }
+
