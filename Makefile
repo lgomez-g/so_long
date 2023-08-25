@@ -7,7 +7,7 @@ LIBFT_PATH = $(SRCS_DIR)/libft
 SRCS = $(wildcard $(SRCS_DIR)/*.c)
 OBJS = $(addprefix $(OBJS_DIR)/,$(notdir $(SRCS:.c=.o)))
 
-CC = gcc
+CC = cc
 CFLAGS = -Wall -Wextra -Werror 
 LIBS = -Lmlx_linux -lmlx_Linux -L/usr/lib -lXext -lX11 -lm -lz -L$(LIBFT_PATH) -lft
 INCLUDES = -Imlx_linux 
