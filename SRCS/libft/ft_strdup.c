@@ -1,26 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map.h                                              :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lgomez-g <lgomez-g@student.42.fr>          +#+  +:+       +#+        */
+/*   By: franciscogomez <franciscogomez@student.42. +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/23 09:32:44 by lgomez-g          #+#    #+#             */
-/*   Updated: 2023/08/25 14:33:20 by lgomez-g         ###   ########.fr       */
+/*   Created: 2023/04/15 12:18:21 by lgomez-g          #+#    #+#             */
+/*   Updated: 2023/04/20 15:41:39 by franciscogomez   ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MAP_H
-# define MAP_H
+#include "libft.h"
 
-#include <stdlib.h>
-#include <mlx.h>
-#include <stdio.h>
-#include <fcntl.h>
-#include <string.h>
+char	*ft_strdup(const char *s)
+{
+	char	*d;
+	size_t	strsize;
 
-
-char	**read_map(const char *filename);
-int is_ber_file(const char *filename);
-
-#endif
+	strsize = ft_strlen(s);
+	d = (char *)malloc(strsize + 1);
+	if (!d)
+		return (0);
+	ft_memcpy(d, s, strsize);
+	d[strsize] = 0;
+	return (d);
+}

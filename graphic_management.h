@@ -6,7 +6,7 @@
 /*   By: lgomez-g <lgomez-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 18:25:26 by franciscogomez    #+#    #+#             */
-/*   Updated: 2023/08/23 09:48:31 by lgomez-g         ###   ########.fr       */
+/*   Updated: 2023/08/25 14:33:32 by lgomez-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,5 +43,6 @@ struct s_game
 
 void	handle_x(t_game *game);
 int	ft_render(t_game *a);
+t_game	*infos(void);
 
 #endif

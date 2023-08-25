@@ -6,13 +6,14 @@
 /*   By: lgomez-g <lgomez-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 09:34:53 by lgomez-g          #+#    #+#             */
-/*   Updated: 2023/08/23 15:38:15 by lgomez-g         ###   ########.fr       */
+/*   Updated: 2023/08/25 12:53:37 by lgomez-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../game_management.h"
+#include "../graphic_management.h"
 
-static void	move_player(t_game *game, int new_x, int new_y)
+void	move_player(t_game *game, int new_x, int new_y)
 {
 
 	if ( game->map[new_y][new_x] != '1')

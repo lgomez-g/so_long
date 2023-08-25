@@ -1,26 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map.h                                              :+:      :+:    :+:   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lgomez-g <lgomez-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/23 09:32:44 by lgomez-g          #+#    #+#             */
-/*   Updated: 2023/08/25 14:33:20 by lgomez-g         ###   ########.fr       */
+/*   Created: 2023/04/17 13:57:34 by lgomez-g          #+#    #+#             */
+/*   Updated: 2023/04/17 14:13:38 by lgomez-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MAP_H
-# define MAP_H
+#include "libft.h"
 
-#include <stdlib.h>
-#include <mlx.h>
-#include <stdio.h>
-#include <fcntl.h>
-#include <string.h>
+void	*ft_memset(void *str, int c, size_t n)
+{
+	size_t	i;
 
-
-char	**read_map(const char *filename);
-int is_ber_file(const char *filename);
-
-#endif
+	i = 0;
+	while (i < n)
+	{
+		((unsigned char *)str)[i] = c;
+		i++;
+	}
+	return (str);
+}

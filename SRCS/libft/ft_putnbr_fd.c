@@ -1,26 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map.h                                              :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lgomez-g <lgomez-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/23 09:32:44 by lgomez-g          #+#    #+#             */
-/*   Updated: 2023/08/25 14:33:20 by lgomez-g         ###   ########.fr       */
+/*   Created: 2023/04/22 08:43:40 by lgomez-g          #+#    #+#             */
+/*   Updated: 2023/04/28 18:40:49 by lgomez-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MAP_H
-# define MAP_H
+#include "libft.h"
 
-#include <stdlib.h>
-#include <mlx.h>
-#include <stdio.h>
-#include <fcntl.h>
-#include <string.h>
-
-
-char	**read_map(const char *filename);
-int is_ber_file(const char *filename);
-
-#endif
+void	ft_putnbr_fd(int n, int fd)
+{
+	if (fd == -1)
+		return ;
+	if (n == -2147483648)
+	{
+		ft_putstr_fd("-2147483648", fd);
+		return ;
+	}
+	if (n < 0)
+	{
+		ft_putchar_fd('-', fd);
+		n *= -1;
+	}
+	if (n > 9)
+	{
+		ft_putnbr_fd(n / 10, fd);
+		ft_putnbr_fd(n % 10, fd);
+	}
+	else
+		ft_putchar_fd(n + 48, fd);
+}

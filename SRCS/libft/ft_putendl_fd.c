@@ -1,26 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map.h                                              :+:      :+:    :+:   */
+/*   ft_putendl_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lgomez-g <lgomez-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/23 09:32:44 by lgomez-g          #+#    #+#             */
-/*   Updated: 2023/08/25 14:33:20 by lgomez-g         ###   ########.fr       */
+/*   Created: 2023/04/20 09:26:40 by lgomez-g          #+#    #+#             */
+/*   Updated: 2023/04/28 18:40:37 by lgomez-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MAP_H
-# define MAP_H
+#include "libft.h"
 
-#include <stdlib.h>
-#include <mlx.h>
-#include <stdio.h>
-#include <fcntl.h>
-#include <string.h>
-
-
-char	**read_map(const char *filename);
-int is_ber_file(const char *filename);
-
-#endif
+void	ft_putendl_fd(char *s, int fd)
+{
+	if (fd == -1)
+		return ;
+	if (s)
+	{
+		ft_putstr_fd(s, fd);
+		ft_putchar_fd('\n', fd);
+	}
+}

@@ -1,26 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map.h                                              :+:      :+:    :+:   */
+/*   ft_isalpha.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lgomez-g <lgomez-g@student.42.fr>          +#+  +:+       +#+        */
+/*   By: franciscogomez <franciscogomez@student.42. +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/23 09:32:44 by lgomez-g          #+#    #+#             */
-/*   Updated: 2023/08/25 14:33:20 by lgomez-g         ###   ########.fr       */
+/*   Created: 2023/04/13 13:33:15 by lgomez-g          #+#    #+#             */
+/*   Updated: 2023/04/20 15:55:17 by franciscogomez   ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MAP_H
-# define MAP_H
+#include "libft.h"
 
-#include <stdlib.h>
-#include <mlx.h>
-#include <stdio.h>
-#include <fcntl.h>
-#include <string.h>
-
-
-char	**read_map(const char *filename);
-int is_ber_file(const char *filename);
-
-#endif
+int	ft_isalpha(int x)
+{
+	if ((x >= 65 && x <= 90) || (x >= 97 && x <= 122))
+		return (1);
+	else
+		return (0);
+}

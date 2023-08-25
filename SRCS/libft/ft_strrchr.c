@@ -1,26 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map.h                                              :+:      :+:    :+:   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lgomez-g <lgomez-g@student.42.fr>          +#+  +:+       +#+        */
+/*   By: franciscogomez <franciscogomez@student.42. +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/23 09:32:44 by lgomez-g          #+#    #+#             */
-/*   Updated: 2023/08/25 14:33:20 by lgomez-g         ###   ########.fr       */
+/*   Created: 2023/04/13 16:32:17 by lgomez-g          #+#    #+#             */
+/*   Updated: 2023/04/20 15:59:18 by franciscogomez   ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MAP_H
-# define MAP_H
+#include "libft.h"
 
-#include <stdlib.h>
-#include <mlx.h>
-#include <stdio.h>
-#include <fcntl.h>
-#include <string.h>
+char	*ft_strrchr(const char *str, int c)
+{
+	int	i;
 
-
-char	**read_map(const char *filename);
-int is_ber_file(const char *filename);
-
-#endif
+	i = ft_strlen(str);
+	if (c == '\0')
+		return ((char *)str + i);
+	while (i >= 0)
+	{
+		if (str[i] == (char)c)
+			return ((char *)str + i);
+		i--;
+	}
+	return (0);
+}

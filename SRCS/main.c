@@ -6,12 +6,14 @@
 /*   By: lgomez-g <lgomez-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 09:19:16 by lgomez-g          #+#    #+#             */
-/*   Updated: 2023/08/23 15:37:47 by lgomez-g         ###   ########.fr       */
+/*   Updated: 2023/08/25 17:13:39 by lgomez-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../graphic_management.h"
 #include "../game_management.h"
+#include "../map.h"
+#include "libft/libft.h"
 
 int	main(void)
 {
@@ -26,12 +28,12 @@ int	main(void)
 	a.map = read_map("maps/map_level_1.ber");
 	if (!a.map)
 	{
-		printf(stderr, "Error To Load Map");
+		fprintf(stderr, "Error To Load Map");
 		return (1);
 	}
 
 	a.mlx = mlx_init();
-	a.windows = mlx_new_window(a.mlx, 320, 160, "Game");
+	a.windows = mlx_new_window(a.mlx, infos()->width * 32, infos()->height * 32, "Game");
 	a.total_collectibles = calcular_total_collectibles(a.map);
 	a.img_wall = mlx_xpm_file_to_image(a.mlx, "images/wall.xpm", &a.width, &a.height);
 	a.img_background =  mlx_xpm_file_to_image(a.mlx, "images/background.xpm", &a.width, &a.height);

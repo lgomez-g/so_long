@@ -1,26 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map.h                                              :+:      :+:    :+:   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lgomez-g <lgomez-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/23 09:32:44 by lgomez-g          #+#    #+#             */
-/*   Updated: 2023/08/25 14:33:20 by lgomez-g         ###   ########.fr       */
+/*   Created: 2023/04/21 10:04:50 by lgomez-g          #+#    #+#             */
+/*   Updated: 2023/04/28 16:53:32 by lgomez-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MAP_H
-# define MAP_H
+#include "libft.h"
 
-#include <stdlib.h>
-#include <mlx.h>
-#include <stdio.h>
-#include <fcntl.h>
-#include <string.h>
-
-
-char	**read_map(const char *filename);
-int is_ber_file(const char *filename);
-
-#endif
+void	*ft_memmove(void *dest, const void *src, size_t n)
+{
+	if (dest == NULL && src == NULL)
+		return (0);
+	else if (dest > src)
+		while (n-- > 0)
+			((char *)dest)[n] = ((char *)src)[n];
+	else
+	{	
+		ft_memcpy(dest, src, n);
+	}
+	return (dest);
+}

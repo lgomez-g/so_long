@@ -1,26 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map.h                                              :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lgomez-g <lgomez-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/23 09:32:44 by lgomez-g          #+#    #+#             */
-/*   Updated: 2023/08/25 14:33:20 by lgomez-g         ###   ########.fr       */
+/*   Created: 2023/04/16 20:04:55 by lgomez-g          #+#    #+#             */
+/*   Updated: 2023/04/17 13:54:57 by lgomez-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MAP_H
-# define MAP_H
+#include "libft.h"
 
-#include <stdlib.h>
-#include <mlx.h>
-#include <stdio.h>
-#include <fcntl.h>
-#include <string.h>
+void	*ft_calloc(size_t nitems, size_t size)
+{
+	void	*dest;
 
-
-char	**read_map(const char *filename);
-int is_ber_file(const char *filename);
-
-#endif
+	dest = malloc(nitems * size);
+	if (!dest)
+		return (0);
+	ft_bzero(dest, nitems * size);
+	return (dest);
+}
