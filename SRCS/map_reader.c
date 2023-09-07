@@ -6,7 +6,7 @@
 /*   By: lgomez-g <lgomez-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 10:09:30 by lgomez-g          #+#    #+#             */
-/*   Updated: 2023/08/25 21:43:40 by lgomez-g         ###   ########.fr       */
+/*   Updated: 2023/09/07 13:02:06 by lgomez-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ char	**read_map(const char *filename)
 	int		rows; // Número de filas en el mapa
 	int		i; // Índice para recorrer la matriz
 
+
 	if (!is_ber_file(filename))	//verifica el .ber
 		return (NULL);
 
@@ -115,7 +116,7 @@ char	**read_map(const char *filename)
         return NULL; // Devuelve NULL en caso de error
     }
 	
-	if (!is_map_rectangular(map, rows))
+    if (!is_map_rectangular(map, rows))
     {
         fprintf(stderr, "Error: Map is not rectangular");
         free_map(map, rows); // Liberar memoria asignada a las filas
@@ -130,9 +131,9 @@ char	**read_map(const char *filename)
 	return (map); // Devuelve la matriz con el mapa cargado desde el archivo
 }
 
-VERIFICAR POR QUE NO SIRVE is_map_rectangular
+//VERIFICAR POR QUE NO SIRVE is_map_rectangular
 
-/*bool is_map_rectangular(char **map, int rows)
+bool is_map_rectangular(char **map, int rows)
 {
     if (rows == 0)
         return false; // El mapa no puede ser rectangular si no tiene filas
@@ -147,7 +148,7 @@ VERIFICAR POR QUE NO SIRVE is_map_rectangular
     }
 
     return true; // Todas las filas tienen la misma longitud, el mapa es rectangular
-}*/
+}
 
 void free_map(char **map, int rows)
 {

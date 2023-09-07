@@ -6,7 +6,7 @@
 /*   By: lgomez-g <lgomez-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 09:19:16 by lgomez-g          #+#    #+#             */
-/*   Updated: 2023/08/25 21:32:05 by lgomez-g         ###   ########.fr       */
+/*   Updated: 2023/09/07 12:57:25 by lgomez-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,20 +19,30 @@ int	main(void)
 {
 	static t_game	a;
 	
-	/*
-	a.player_x = 2; // Coordenada X
-    a.player_y = 2; // Coordenada Y
-	*/
-	
 	
 	a.collected_objects = 0;
 
-	a.map = read_map("maps/map_level_2.ber");
+	a.map = read_map("maps/map_level_1.ber");
+	
 	if (!a.map)
 	{
 		fprintf(stderr, "Error To Load Map");
 		return (1);
 	}
+	
+	for (int y = 0; a.map[y]; y++)
+	{
+    	for (int x = 0; a.map[y][x]; x++)
+    	{
+        	if (a.map[y][x] == 'P')
+        	{
+            	a.player_x = x;
+            	a.player_y = y;
+            	break;
+        	}
+    	}
+	}
+
 
 	a.mlx = mlx_init();
 	a.windows = mlx_new_window(a.mlx, infos()->width * 32, infos()->height * 32, "Game");
