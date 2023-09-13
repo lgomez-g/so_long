@@ -6,7 +6,7 @@
 /*   By: lgomez-g <lgomez-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 10:09:30 by lgomez-g          #+#    #+#             */
-/*   Updated: 2023/09/07 13:02:06 by lgomez-g         ###   ########.fr       */
+/*   Updated: 2023/09/13 16:24:59 by lgomez-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,39 +122,15 @@ char	**read_map(const char *filename)
         free_map(map, rows); // Liberar memoria asignada a las filas
         return NULL;
     }
+	if (!valid_walls(map, rows))
+	{
+		fprintf(stderr, "Error: Map doesn't have valid Walls");
+        free_map(map, rows); // Liberar memoria asignada a las filas
+        return NULL;
+	}
 
 	infos()->height = rows;
 	infos()->width = strlen(map[0]) - 1;
-	//printf("map height: %d", infos()->height);
-	//printf("map width: %d", infos()->width);
 
 	return (map); // Devuelve la matriz con el mapa cargado desde el archivo
-}
-
-//VERIFICAR POR QUE NO SIRVE is_map_rectangular
-
-bool is_map_rectangular(char **map, int rows)
-{
-    if (rows == 0)
-        return false; // El mapa no puede ser rectangular si no tiene filas
-
-    size_t first_row_length = strlen(map[0]); // Longitud de la primera fila
-
-    for (int i = 1; i < rows; i++)
-    {
-        size_t current_row_length = strlen(map[i]);
-        if (current_row_length != first_row_length)
-            return false; // Encuentra una fila con longitud diferente
-    }
-
-    return true; // Todas las filas tienen la misma longitud, el mapa es rectangular
-}
-
-void free_map(char **map, int rows)
-{
-    for (int i = 0; i < rows; i++)
-    {
-        free(map[i]);
-    }
-    free(map);
 }

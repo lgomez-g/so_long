@@ -6,7 +6,7 @@
 /*   By: lgomez-g <lgomez-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 09:34:53 by lgomez-g          #+#    #+#             */
-/*   Updated: 2023/08/25 12:53:37 by lgomez-g         ###   ########.fr       */
+/*   Updated: 2023/09/13 17:48:37 by lgomez-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,9 @@ void	move_player(t_game *game, int new_x, int new_y)
 	}
 }
 
-int handle_key(int keycode, t_game *game)
+int	handle_key(int keycode, t_game *game)
 {
-	if (keycode == 65307) // Código de la tecla Esc
+	if (keycode == 65307)
 	{
 		mlx_destroy_window(game->mlx, game->windows);
 	 	exit(0);
@@ -54,25 +54,26 @@ int handle_key(int keycode, t_game *game)
 }
 
 
-int calcular_total_collectibles(char **map)
+int	calcular_total_collectibles(char **map)
 {
-	int total_collectibles = 0; 
+	int	total_collectibles;
+	int	y;
+	int	x;
 
-	int y = 0;
-	while(map[y]) // Cambia "a->map[y]" a "map[y]"
+	y = 0;
+	x = 0;
+	total_collectibles = 0;
+	while (map[y])
 	{
-		int x = 0;
-		while(map[y][x])
+		while (map[y][x])
 		{
 			if (map[y][x] == 'C')
 				total_collectibles++;
-			
 			x++; 
 		}
 		y++;
 	}
-
-	return total_collectibles; 
+	return (total_collectibles); 
 }
 
 

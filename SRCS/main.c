@@ -6,7 +6,7 @@
 /*   By: lgomez-g <lgomez-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 09:19:16 by lgomez-g          #+#    #+#             */
-/*   Updated: 2023/09/07 12:57:25 by lgomez-g         ###   ########.fr       */
+/*   Updated: 2023/09/13 17:55:15 by lgomez-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,18 +18,13 @@
 int	main(void)
 {
 	static t_game	a;
-	
-	
 	a.collected_objects = 0;
-
 	a.map = read_map("maps/map_level_1.ber");
-	
 	if (!a.map)
 	{
 		fprintf(stderr, "Error To Load Map");
 		return (1);
 	}
-	
 	for (int y = 0; a.map[y]; y++)
 	{
     	for (int x = 0; a.map[y][x]; x++)
@@ -38,7 +33,7 @@ int	main(void)
         	{
             	a.player_x = x;
             	a.player_y = y;
-            	break;
+            	break ;
         	}
     	}
 	}
