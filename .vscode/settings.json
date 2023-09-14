@@ -1,5 +1,6 @@
 {
 	"files.associations": {
-		"graphic_management.h": "c"
+		"graphic_management.h": "c",
+		"random": "c"
 	}
 }

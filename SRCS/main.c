@@ -6,7 +6,7 @@
 /*   By: lgomez-g <lgomez-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 09:19:16 by lgomez-g          #+#    #+#             */
-/*   Updated: 2023/09/13 17:55:15 by lgomez-g         ###   ########.fr       */
+/*   Updated: 2023/09/14 17:29:38 by lgomez-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,23 @@ int	main(void)
         	}
     	}
 	}
-
-
+	printf("%i %i\n", infos()->height, infos()->width);
+	a.valid_path = false;
+	char **map = duplicate_map(a.map, infos()->height, infos()->width);
+	flood_fill(&a, a.player_x, a.player_y);
+	if (a.valid_path)
+	{
+		fprintf(stderr, "Error: No valid path in the map.\n");
+		free_map(map, infos()->height);
+		free_map(a.map, infos()->height);
+		exit(1);
+	}
+	a.map = map;
+    if (!verify_map_characters(a.map))
+    {
+        free_map(a.map, infos()->height);
+        return (1);
+    }
 	a.mlx = mlx_init();
 	a.windows = mlx_new_window(a.mlx, infos()->width * 32, infos()->height * 32, "Game");
 	a.total_collectibles = calcular_total_collectibles(a.map);

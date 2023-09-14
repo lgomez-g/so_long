@@ -6,7 +6,7 @@
 /*   By: lgomez-g <lgomez-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 14:16:50 by lgomez-g          #+#    #+#             */
-/*   Updated: 2023/09/13 17:42:20 by lgomez-g         ###   ########.fr       */
+/*   Updated: 2023/09/14 17:32:25 by lgomez-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,3 +67,75 @@ bool	valid_walls(char **map, int rows)
 	}
 	return (true);
 }
+
+bool verify_map_characters(char **map)
+{
+    int y = 0;
+    while (map[y])
+    {
+        int x = 0;
+        while (map[y][x])
+        {
+            char c = map[y][x];
+            if (c != '1' && c != 'P' && c != '0' && c != 'C' && c != 'E' && c != '\n')
+                return false;
+            x++;
+        }
+        y++;
+    }
+    return (true);
+}
+
+
+void flood_fill(t_game *game, int x, int y)
+{
+	// Retrieve the map dimensions using infos() function
+	// Check if the current position is out of bounds or if it's a wall or already visited
+	if (x < 0 || y < 0 || x >= infos()->width - 1 || y >= infos()->height - 1 || game->map[y][x] == '1')
+	{
+		return;
+	}
+
+	// Mark the current position as visited
+	game->map[y][x] = '1';
+
+	// If the current position is an exit ('E'), set valid_path to true
+	if (game->map[y][x] == 'E')
+	{
+		game->valid_path = true;
+		return; // Return immediately when you find a valid path to the exit
+	}
+
+	// Recursively call flood_fill on adjacent positions
+	flood_fill(game, x + 1, y);
+	flood_fill(game, x - 1, y);
+	flood_fill(game, x, y + 1);
+	flood_fill(game, x, y - 1);
+}
+
+char **duplicate_map(char **map, int rows, int cols)
+{
+	int		i;
+	char	**new_map;
+
+	i = 0;
+	printf("row: %i\n", rows);
+	new_map = malloc((rows + 1) * sizeof(char *));
+	if (!new_map)
+		exit(fprintf(stderr, "Error: Memory allocation failed.\n"));
+	while (i < rows)
+	{
+		new_map[i] = (char *)malloc((cols + 1) * sizeof(char));
+		if (!new_map[i])
+		{
+			fprintf(stderr, "Error: Memory allocation failed.\n");
+			exit(1);
+		}
+		strcpy(new_map[i], map[i]);
+		printf("%s\n", new_map[i]);
+		i++;
+	}
+	new_map[i] = NULL;
+	return new_map;
+}
+

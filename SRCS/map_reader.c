@@ -6,7 +6,7 @@
 /*   By: lgomez-g <lgomez-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 10:09:30 by lgomez-g          #+#    #+#             */
-/*   Updated: 2023/09/13 16:24:59 by lgomez-g         ###   ########.fr       */
+/*   Updated: 2023/09/14 16:34:31 by lgomez-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,19 +22,18 @@ int is_ber_file(const char *filename)
 
 	dot = ft_strrchr(filename, '.');
 	if (dot && ft_strncmp(dot, ".ber", 4) == 0)
-		return (1); // si es .ber
-	return (0); // si no es .ber
+		return (1);
+	return (0);
 }
-
 
 t_game	*infos(void)
 {
 	static t_game b;
-	
-	return(&b);
+
+	return (&b);
 }
 
-int verify_map_components(char **map)	//verifica los componentes
+int verify_map_components(char **map)
 {
     int start_count = 0;
     int exit_count = 0;
@@ -57,14 +56,12 @@ int verify_map_components(char **map)	//verifica los componentes
         }
         y++;
     }
-
-    if (start_count != 1 || exit_count != 1 || collectible_count < 1)
+	if (start_count != 1 || exit_count != 1 || collectible_count < 1)
     {
         fprintf(stderr, "Error: Invalid map components\n");
-        return 0; // Indica que hay un error
+        return 0;
     }
-
-    return 1; // Indica que todo está correcto
+    return (1);
 }
 
 char	**read_map(const char *filename)
@@ -109,7 +106,6 @@ char	**read_map(const char *filename)
 	}
 	map[i] = NULL; // Agrega un marcador de final de matriz
 	close(fd);
-
 	if (!verify_map_components(map)) // verifica los duplicados
     {
         free(map); // Liberar memoria asignada
