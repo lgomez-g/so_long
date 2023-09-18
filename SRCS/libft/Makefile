@@ -6,17 +6,17 @@
 #    By: lgomez-g <lgomez-g@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/20 16:13:25 by franciscogomez    #+#    #+#              #
-#    Updated: 2023/08/25 13:36:03 by lgomez-g         ###   ########.fr        #
+#    Updated: 2023/09/18 19:56:56 by lgomez-g         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libft.a
 
-CC = cc
+CC = @cc
 
 CFLAGS = -Wall -Wextra -Werror
 
-RM = rm -f
+RM = @rm -f
 
 # $(VERBOSE).SILENT
 

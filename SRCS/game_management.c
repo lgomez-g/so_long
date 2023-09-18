@@ -6,7 +6,7 @@
 /*   By: lgomez-g <lgomez-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 09:34:53 by lgomez-g          #+#    #+#             */
-/*   Updated: 2023/09/14 15:48:19 by lgomez-g         ###   ########.fr       */
+/*   Updated: 2023/09/18 19:49:57 by lgomez-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ void	move_player(t_game *game, int new_x, int new_y)
 		game->player_x = new_x;
 		game->player_y = new_y;
 		game->movements++;
-		if (game->collected_objects == game->total_collectibles && \
-			game->map[game->player_y][game->player_x] == 'E')
+		if (game->collected_objects == game->total_collectibles
+			&& game->map[game->player_y][game->player_x] == 'E')
 		{
 			printf("¡You Win!\n");
 			mlx_destroy_window(game->mlx, game->windows);
@@ -50,7 +50,8 @@ int	handle_key(int keycode, t_game *game)
 		move_player(game, game->player_x - 1, game->player_y);
 	else if (keycode == 100) 
 		move_player(game, game->player_x + 1, game->player_y);
-	printf("Movimientos realizados: %d\n", game->movements);
+	mlx_clear_window(game->mlx, game->windows);
+	printf("Movimientos realizados: %d\n\033c", game->movements);
 	return (0);
 }
 
@@ -65,6 +66,7 @@ int	calcular_total_collectibles(char **map)
 	total_collectibles = 0;
 	while (map[y])
 	{
+		x = 0;
 		while (map[y][x])
 		{
 			if (map[y][x] == 'C')

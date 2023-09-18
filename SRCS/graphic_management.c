@@ -6,7 +6,7 @@
 /*   By: lgomez-g <lgomez-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 09:21:32 by lgomez-g          #+#    #+#             */
-/*   Updated: 2023/09/14 15:50:37 by lgomez-g         ###   ########.fr       */
+/*   Updated: 2023/09/18 18:37:49 by lgomez-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	ft_render(t_game *a)
 		{
 			if (a->map[y][x] == '1')
 				mlx_put_image_to_window(a->mlx, a->windows, \
-					a->img_wall, x  * 32, y * 32);
+					a->img_wall, x * 32, y * 32);
 			else if (a->map[y][x] == '0')
 				mlx_put_image_to_window(a->mlx, a->windows, \
 					a->img_background, x  * 32, y * 32);
@@ -48,6 +48,7 @@ int	ft_render(t_game *a)
 		}
 		y++;
 	}
-	mlx_put_image_to_window (a->mlx, a->windows, a->img_player, a->player_x  * 32, a->player_y * 32);
+	mlx_put_image_to_window (a->mlx, a->windows, a->img_player, \
+	a->player_x * 32, a->player_y * 32);
 	return (0);
 }

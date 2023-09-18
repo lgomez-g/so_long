@@ -6,7 +6,7 @@
 /*   By: lgomez-g <lgomez-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 14:16:50 by lgomez-g          #+#    #+#             */
-/*   Updated: 2023/09/14 17:32:25 by lgomez-g         ###   ########.fr       */
+/*   Updated: 2023/09/18 19:52:07 by lgomez-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,14 +70,19 @@ bool	valid_walls(char **map, int rows)
 
 bool verify_map_characters(char **map)
 {
-    int y = 0;
+    int	y;
+
+	y = 0;
     while (map[y])
     {
-        int x = 0;
+        int x;
+		
+		x = 0;
         while (map[y][x])
         {
             char c = map[y][x];
-            if (c != '1' && c != 'P' && c != '0' && c != 'C' && c != 'E' && c != '\n')
+            if (c != '1' && c != 'P' && c != '0' && c != 'C' \
+			&& c != 'E' && c != '\n')
                 return false;
             x++;
         }
@@ -86,27 +91,18 @@ bool verify_map_characters(char **map)
     return (true);
 }
 
-
 void flood_fill(t_game *game, int x, int y)
 {
-	// Retrieve the map dimensions using infos() function
-	// Check if the current position is out of bounds or if it's a wall or already visited
-	if (x < 0 || y < 0 || x >= infos()->width - 1 || y >= infos()->height - 1 || game->map[y][x] == '1')
+	if (x < 0 || y < 0 || x >= infos()->width - 1 || y >= infos()->height - 1 \
+	|| game->map[y][x] == '1')
 	{
-		return;
+		return ;
 	}
-
-	// Mark the current position as visited
-	game->map[y][x] = '1';
-
-	// If the current position is an exit ('E'), set valid_path to true
 	if (game->map[y][x] == 'E')
 	{
 		game->valid_path = true;
-		return; // Return immediately when you find a valid path to the exit
 	}
-
-	// Recursively call flood_fill on adjacent positions
+	game->map[y][x] = '1';
 	flood_fill(game, x + 1, y);
 	flood_fill(game, x - 1, y);
 	flood_fill(game, x, y + 1);
@@ -132,10 +128,8 @@ char **duplicate_map(char **map, int rows, int cols)
 			exit(1);
 		}
 		strcpy(new_map[i], map[i]);
-		printf("%s\n", new_map[i]);
 		i++;
 	}
 	new_map[i] = NULL;
-	return new_map;
+	return (new_map);
 }
-
