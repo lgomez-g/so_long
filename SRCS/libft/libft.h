@@ -3,19 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lgomez-g <lgomez-g@student.42.fr>          +#+  +:+       +#+        */
+/*   By: franciscogomez <franciscogomez@student.42. +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 16:13:40 by franciscogomez    #+#    #+#             */
-/*   Updated: 2023/08/25 12:23:14 by lgomez-g         ###   ########.fr       */
+/*   Updated: 2023/09/19 15:11:06 by franciscogomez   ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
+# define HEXMIN "0123456789abcdef"
+# define HEXMAX "0123456789ABCDEF"
 
 # include <unistd.h>
 # include <stdlib.h>
 # include <stdio.h>
+# include <stdarg.h>
+# include <limits.h>
+# include <stdint.h>
 
 int		ft_strlen(const char *str);
 int		ft_isalpha(int x);
@@ -50,4 +55,13 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize);
 char	*ft_strnstr(const char *big, const char *little, size_t len);
 void	*ft_memchr(const void *str, int c, size_t n);
 char	**ft_split(char const *s, char c);
+int		    ft_printf(const char *format, ...);
+int		    ft_printfc(char c);
+int		    ft_printfselect(char c, va_list args);
+int		    ft_printfs(char *str);
+int		    ft_strlen(const char *str);
+int		    ft_printfn(int n);
+int		    ft_printfun(unsigned int n);
+int		    ft_printfx(unsigned long long n, char *base);
+int		    ft_printfp(unsigned long long n);
 #endif
