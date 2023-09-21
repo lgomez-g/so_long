@@ -1,23 +1,12 @@
-<<<<<<< HEAD
-
-=======
->>>>>>> d18e74f9a0c63f4ce7efb508becaece888e0e01b
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-<<<<<<< HEAD
 /*   By: lgomez-g <lgomez-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 13:29:17 by franciscogomez    #+#    #+#             */
-/*   Updated: 2023/09/21 12:19:35 by lgomez-g         ###   ########.fr       */
-=======
-/*   By: franciscogomez <franciscogomez@student.42. +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/01 13:29:17 by franciscogomez    #+#    #+#             */
-/*   Updated: 2023/09/19 15:08:55 by franciscogomez   ###   ########.fr       */
->>>>>>> d18e74f9a0c63f4ce7efb508becaece888e0e01b
+/*   Updated: 2023/09/21 16:16:25 by lgomez-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,22 +23,12 @@ int ft_printf(const char *format, ...)
 	{
 		if (*format == '%')
 			ret += ft_printfselect(*(++format), args);
-<<<<<<< HEAD
 		else
 			ret += ft_printfc(*format);
 		format++;
 	}
 	va_end (args);
 	return (ret);
-=======
-		else 
-			ret += ft_printfc(*format);
-			format++;
-	}
-	va_end (args);
-	return (ret);
-		
->>>>>>> d18e74f9a0c63f4ce7efb508becaece888e0e01b
 }
 
 int ft_printfselect (char c, va_list args)
