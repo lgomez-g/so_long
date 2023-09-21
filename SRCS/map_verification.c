@@ -6,7 +6,7 @@
 /*   By: lgomez-g <lgomez-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 14:16:50 by lgomez-g          #+#    #+#             */
-/*   Updated: 2023/09/18 19:52:07 by lgomez-g         ###   ########.fr       */
+/*   Updated: 2023/09/21 15:32:36 by lgomez-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,16 +115,18 @@ char **duplicate_map(char **map, int rows, int cols)
 	char	**new_map;
 
 	i = 0;
-	printf("row: %i\n", rows);
 	new_map = malloc((rows + 1) * sizeof(char *));
 	if (!new_map)
-		exit(fprintf(stderr, "Error: Memory allocation failed.\n"));
+	{
+		perror("Error: Memory allocation failed.\n");
+		exit(1);
+	}
 	while (i < rows)
 	{
 		new_map[i] = (char *)malloc((cols + 1) * sizeof(char));
 		if (!new_map[i])
 		{
-			fprintf(stderr, "Error: Memory allocation failed.\n");
+			perror("Error: Memory allocation failed.\n");
 			exit(1);
 		}
 		strcpy(new_map[i], map[i]);

@@ -6,13 +6,13 @@
 /*   By: lgomez-g <lgomez-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 09:21:32 by lgomez-g          #+#    #+#             */
-/*   Updated: 2023/09/18 18:37:49 by lgomez-g         ###   ########.fr       */
+/*   Updated: 2023/09/21 14:19:12 by lgomez-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../graphic_management.h"
 
-void	handle_x(t_game *game)	// Para salir con la cruz
+void	handle_x(t_game *game)
 {
 	(void) game;
 	exit(0);

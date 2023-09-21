@@ -6,12 +6,13 @@
 /*   By: lgomez-g <lgomez-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 09:34:53 by lgomez-g          #+#    #+#             */
-/*   Updated: 2023/09/18 19:49:57 by lgomez-g         ###   ########.fr       */
+/*   Updated: 2023/09/21 15:21:46 by lgomez-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../game_management.h"
 #include "../graphic_management.h"
+#include "libft/libft.h"
 
 void	move_player(t_game *game, int new_x, int new_y)
 {
@@ -28,7 +29,7 @@ void	move_player(t_game *game, int new_x, int new_y)
 		if (game->collected_objects == game->total_collectibles
 			&& game->map[game->player_y][game->player_x] == 'E')
 		{
-			printf("¡You Win!\n");
+			ft_printf("¡You Win!\n");
 			mlx_destroy_window(game->mlx, game->windows);
 			exit(0);
 		}
@@ -37,6 +38,7 @@ void	move_player(t_game *game, int new_x, int new_y)
 
 int	handle_key(int keycode, t_game *game)
 {
+	
 	if (keycode == 65307)
 	{
 		mlx_destroy_window(game->mlx, game->windows);
@@ -48,10 +50,12 @@ int	handle_key(int keycode, t_game *game)
 		move_player(game, game->player_x, game->player_y + 1);
 	else if (keycode == 97) 
 		move_player(game, game->player_x - 1, game->player_y);
-	else if (keycode == 100) 
+	else if (keycode == 100)
 		move_player(game, game->player_x + 1, game->player_y);
-	mlx_clear_window(game->mlx, game->windows);
-	printf("Movimientos realizados: %d\n\033c", game->movements);
+		
+	// mlx_clear_window(game->mlx, game->windows);
+	ft_render(game);
+	ft_printf("Movimientos realizados: %d\n", game->movements);
 	return (0);
 }
 
@@ -75,5 +79,6 @@ int	calcular_total_collectibles(char **map)
 		}
 		y++;
 	}
-	return (total_collectibles); 
+	return (total_collectibles);
+
 }

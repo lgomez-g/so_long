@@ -6,7 +6,7 @@
 /*   By: lgomez-g <lgomez-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 10:09:30 by lgomez-g          #+#    #+#             */
-/*   Updated: 2023/09/18 19:39:50 by lgomez-g         ###   ########.fr       */
+/*   Updated: 2023/09/21 15:36:24 by lgomez-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ int verify_map_components(char **map)
 	}
 	if (start_count != 1 || exit_count != 1 || collectible_count < 1)
 	{
-		fprintf(stderr, "Error: Invalid map components\n");
+		perror("Error: Invalid map components");
 		return (0);
 	}
 	return (1);
@@ -75,8 +75,7 @@ int validate_map_chars(const char *line)
 		if (current_char != '0' && current_char != '1' && current_char != 'C' &&
 			current_char != 'E' && current_char != 'P' && current_char != '\n')
 		{
-			fprintf (stderr, "Error: Invalid character '%c' in the map.\n", \
-			current_char);
+			perror("Error: Invalid character in the map.");
 			return (0);
 		}
 		line++;
@@ -130,13 +129,13 @@ char	**read_map(const char *filename)
 	}
 	if (!is_map_rectangular(map, rows))
 	{
-		fprintf(stderr, "Error: Map is not rectangular");
+		perror("Error: Map is not rectangular");
 		free_map(map, rows);
 		return (NULL);
 	}
 	if (!valid_walls(map, rows))
 	{
-		fprintf(stderr, "Error: Map doesn't have valid Walls");
+		perror("Error: Map doesn't have valid Walls");
 		free_map(map, rows);
 		return (NULL);
 	}

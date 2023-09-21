@@ -22,6 +22,9 @@ $(NAME): $(OBJS)
 $(OBJS_DIR):
 	@mkdir -p $@
 
+run: $(NAME)
+	@./$(NAME)
+	
 clean:
 	@make clean -sC $(LIBFT_PATH)
 	@rm -rf $(OBJS_DIR)

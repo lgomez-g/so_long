@@ -6,12 +6,13 @@
 /*   By: lgomez-g <lgomez-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 09:32:44 by lgomez-g          #+#    #+#             */
-/*   Updated: 2023/09/18 17:33:17 by lgomez-g         ###   ########.fr       */
+/*   Updated: 2023/09/21 15:52:54 by lgomez-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MAP_H
 # define MAP_H
+
 
 #include <stdlib.h>
 #include <mlx.h>
