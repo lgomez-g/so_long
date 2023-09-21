@@ -6,14 +6,11 @@
 /*   By: lgomez-g <lgomez-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 10:09:30 by lgomez-g          #+#    #+#             */
-/*   Updated: 2023/09/21 16:15:03 by lgomez-g         ###   ########.fr       */
+/*   Updated: 2023/09/21 20:16:54 by lgomez-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../map.h"
-#include "libft/libft.h"
-#include "../get_next_line.h"
-#include "../graphic_management.h"
+#include "../so_long.h"
 
 int is_ber_file(const char *filename)
 {
@@ -25,24 +22,16 @@ int is_ber_file(const char *filename)
 	return (0);
 }
 
-t_game	*infos(void)
-{
-	static t_game b;
-
-	return (&b);
-}
-
-int verify_map_components(char **map)
+int verify_map_components(char **map, t_game *game)
 {
 	int	start_count;
 	int	exit_count;
-	int	collectible_count;
 	int	y;
 	int	x;
 
 	start_count = 0;
 	exit_count = 0;
-	collectible_count = 0;
+	game->collected_objects = 0;
 	y = 0;
 	while (map[y])
 	{
@@ -54,19 +43,19 @@ int verify_map_components(char **map)
 			else if (map[y][x] == 'E')
 				exit_count++;
 			else if (map[y][x] == 'C')
-				collectible_count++;
+				game->collected_objects++;
 			x++;
 		}
 		y++;
 	}
-	if (start_count != 1 || exit_count != 1 || collectible_count < 1)
+	if (start_count != 1 || exit_count != 1 || game->collected_objects < 1)
 	{
 		perror("Error: Invalid map components");
 		return (0);
 	}
 	return (1);
 }
-
+//ok
 int validate_map_chars(const char *line)
 {
 	while (*line)
@@ -82,64 +71,68 @@ int validate_map_chars(const char *line)
 	}
 	return (1);
 }
-
-char	**read_map(const char *filename)
+int	map_v(t_game *game, int fd)
 {
-	int		fd; 
 	char	*line;
-	char	**map;
-	int		rows;
 	int		i;
-
-	if (!is_ber_file(filename))
-		return (NULL);
-	fd = open(filename, O_RDONLY);
-	if (fd == -1)
-		return (NULL); 
-	rows = 0;
-	while (get_next_line(fd))
-		rows++;
-	close(fd); 
-	map = (char **)malloc((rows + 1) * sizeof(char *));
-	if (!map) 
-		return (NULL); 
-	fd = open(filename, O_RDONLY);
 	if (fd == -1)
 	{
-		free(map);
-		return (NULL);
+		free(game->map);
+		return (0);
 	}
 	i = 0;
 	while ((line = get_next_line(fd)))
 	{
 		if (!validate_map_chars(line))
 		{
-			free_map(map, i);
-			return (NULL);
+			free_map(game->map, i);
+			return (0);
 		}
-		map[i] = line;
+		game->map[i] = line;
 		i++;
 	}
-	map[i] = NULL;
+	game->map[i] = NULL;
+	return(1);
+}
+char	**read_map(t_game *game, char *filename)
+{
+	int		fd; 
+
+	if (!is_ber_file(filename) || (fd = open(filename, O_RDONLY)) == -1)
+		return (NULL); 
+	game->height = 0;
+	while (get_next_line(fd))
+		game->height++;
+	close(fd); 
+	game->map = (char **)malloc((game->height + 1) * sizeof(char *));
+	if (!game->map) 
+		return (NULL); 
+	fd = open(filename, O_RDONLY);
+	if (!map_v(game, fd))
+		return(NULL);
+	// if (fd == -1)
+	// {
+	// 	free(game->map);
+	// 	return (NULL);
+	// }
+	// i = 0;
+	// while ((line = get_next_line(fd)))
+	// {
+	// 	if (!validate_map_chars(line))
+	// 	{
+	// 		free_map(game->map, i);
+	// 		return (NULL);
+	// 	}
+	// 	game->map[i] = line;
+	// 	i++;
+	// }
+	// game->map[i] = NULL;
 	close(fd);
-	if (!verify_map_components(map))
-	{
-		free (map);
-		return (NULL);
-	}
-	if (!is_map_rectangular(map, rows))
-	{
-		perror("Error: Map is not rectangular");
-		free_map(map, rows);
-		return (NULL);
-	}
-	if (!valid_walls(map, rows))
-	{
-		perror("Error: Map doesn't have valid Walls");
-		free_map(map, rows);
-		return (NULL);
-	}
-	infos()->height = rows;
-	infos()->width = strlen(map[0]) - 1;
-	return (map);
+    if (!verify_map_components(game->map, game) || !is_map_rectangular(game->map, game->height) || !valid_walls(game->map, game->height))
+    {
+        free_map(game->map, game->height);
+        return (NULL);
+    }
+	game->width = strlen(game->map[0]) - 1;
+	return (game->map);
 }

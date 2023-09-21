@@ -6,11 +6,12 @@
 /*   By: lgomez-g <lgomez-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/25 11:45:11 by lgomez-g          #+#    #+#             */
-/*   Updated: 2023/08/25 11:51:43 by lgomez-g         ###   ########.fr       */
+/*   Updated: 2023/09/21 17:00:38 by lgomez-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../get_next_line.h"
+#include "../so_long.h"
+
 
 bool	ft_manage_buffer(char *buffer)
 {

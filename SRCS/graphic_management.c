@@ -6,17 +6,12 @@
 /*   By: lgomez-g <lgomez-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 09:21:32 by lgomez-g          #+#    #+#             */
-/*   Updated: 2023/09/21 14:19:12 by lgomez-g         ###   ########.fr       */
+/*   Updated: 2023/09/21 19:36:52 by lgomez-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../graphic_management.h"
+#include "../so_long.h"
 
-void	handle_x(t_game *game)
-{
-	(void) game;
-	exit(0);
-}
 
 int	ft_render(t_game *a)
 {
@@ -51,4 +46,24 @@ int	ft_render(t_game *a)
 	mlx_put_image_to_window (a->mlx, a->windows, a->img_player, \
 	a->player_x * 32, a->player_y * 32);
 	return (0);
+}
+
+int	quit_f(t_game *game)
+{
+	if(!game->collected_objects
+			&& game->map[game->player_y][game->player_x] == 'E')
+		ft_printf("\033[1;32mYou Win!\033[0m\n");
+	else
+		ft_printf("\033[1;34mYou Out!\033[0m\n");
+	mlx_destroy_image(game->mlx, game->img_background);
+	mlx_destroy_image(game->mlx, game->img_collectible);
+	mlx_destroy_image(game->mlx, game->img_exit);
+	mlx_destroy_image(game->mlx, game->img_player);
+	mlx_destroy_image(game->mlx, game->img_wall);
+	mlx_destroy_window(game->mlx, game->windows);
+	mlx_destroy_display(game->mlx);
+	// free_map(game->map, game->height);
+	// free_map(game->temp_map, game->height);
+	free(game->mlx);
+	exit(EXIT_SUCCESS);
 }

@@ -6,11 +6,11 @@
 /*   By: lgomez-g <lgomez-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/25 11:44:52 by lgomez-g          #+#    #+#             */
-/*   Updated: 2023/08/25 12:49:06 by lgomez-g         ###   ########.fr       */
+/*   Updated: 2023/09/21 17:00:47 by lgomez-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../get_next_line.h"
+#include "../so_long.h"
 
 char	*get_next_line(int fd)
 {

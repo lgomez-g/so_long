@@ -6,14 +6,11 @@
 /*   By: lgomez-g <lgomez-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 14:16:50 by lgomez-g          #+#    #+#             */
-/*   Updated: 2023/09/21 15:32:36 by lgomez-g         ###   ########.fr       */
+/*   Updated: 2023/09/21 19:53:40 by lgomez-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../map.h"
-#include "libft/libft.h"
-#include "../get_next_line.h"
-#include "../graphic_management.h"
+#include "../so_long.h"
 
 bool	is_map_rectangular(char **map, int rows)
 {
@@ -93,15 +90,11 @@ bool verify_map_characters(char **map)
 
 void flood_fill(t_game *game, int x, int y)
 {
-	if (x < 0 || y < 0 || x >= infos()->width - 1 || y >= infos()->height - 1 \
+	if (x < 0 || y < 0 || x >= game->width - 1 || y >= game->height - 1
 	|| game->map[y][x] == '1')
-	{
 		return ;
-	}
 	if (game->map[y][x] == 'E')
-	{
 		game->valid_path = true;
-	}
 	game->map[y][x] = '1';
 	flood_fill(game, x + 1, y);
 	flood_fill(game, x - 1, y);
@@ -109,29 +102,27 @@ void flood_fill(t_game *game, int x, int y)
 	flood_fill(game, x, y - 1);
 }
 
-char **duplicate_map(char **map, int rows, int cols)
+void	duplicate_map(t_game *game, int rows, int cols)
 {
 	int		i;
-	char	**new_map;
 
 	i = 0;
-	new_map = malloc((rows + 1) * sizeof(char *));
-	if (!new_map)
+	game->temp_map = malloc((rows + 1) * sizeof(char *));
+	if (!game->temp_map)
 	{
 		perror("Error: Memory allocation failed.\n");
 		exit(1);
 	}
 	while (i < rows)
 	{
-		new_map[i] = (char *)malloc((cols + 1) * sizeof(char));
-		if (!new_map[i])
+		game->temp_map[i] = (char *)malloc((cols + 1) * sizeof(char));
+		if (!game->temp_map[i])
 		{
 			perror("Error: Memory allocation failed.\n");
 			exit(1);
 		}
-		strcpy(new_map[i], map[i]);
+		strcpy(game->temp_map[i], game->map[i]);
 		i++;
 	}
-	new_map[i] = NULL;
-	return (new_map);
+	game->temp_map[i] = NULL;
 }
