@@ -3,17 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lgomez-g <lgomez-g@student.42.fr>          +#+  +:+       +#+        */
+/*   By: franciscogomez <franciscogomez@student.42. +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 16:13:40 by franciscogomez    #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2023/09/21 12:24:48 by lgomez-g         ###   ########.fr       */
+=======
+/*   Updated: 2023/09/19 15:11:06 by franciscogomez   ###   ########.fr       */
+>>>>>>> d18e74f9a0c63f4ce7efb508becaece888e0e01b
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
+<<<<<<< HEAD
 # define HEXMAX "0123456789ABCDEF"
 # define HEXMIN "0123456789abcdef"
+=======
+# define HEXMIN "0123456789abcdef"
+# define HEXMAX "0123456789ABCDEF"
+>>>>>>> d18e74f9a0c63f4ce7efb508becaece888e0e01b
 
 # include <unistd.h>
 # include <stdlib.h>
@@ -64,5 +73,8 @@ int		    ft_printfn(int n);
 int		    ft_printfun(unsigned int n);
 int		    ft_printfx(unsigned long long n, char *base);
 int		    ft_printfp(unsigned long long n);
+<<<<<<< HEAD
 
+=======
+>>>>>>> d18e74f9a0c63f4ce7efb508becaece888e0e01b
 #endif

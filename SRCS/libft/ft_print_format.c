@@ -3,10 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   ft_print_format.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
+<<<<<<< HEAD
 /*   By: lgomez-g <lgomez-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 14:28:03 by franciscogomez    #+#    #+#             */
 /*   Updated: 2023/09/21 12:21:10 by lgomez-g         ###   ########.fr       */
+=======
+/*   By: franciscogomez <franciscogomez@student.42. +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/05/11 14:28:03 by franciscogomez    #+#    #+#             */
+/*   Updated: 2023/09/19 15:13:55 by franciscogomez   ###   ########.fr       */
+>>>>>>> d18e74f9a0c63f4ce7efb508becaece888e0e01b
 /*                                                                            */
 /* ************************************************************************** */
 

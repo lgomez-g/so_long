@@ -3,10 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   game_management.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lgomez-g <lgomez-g@student.42.fr>          +#+  +:+       +#+        */
+/*   By: franciscogomez <franciscogomez@student.42. +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 09:34:53 by lgomez-g          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2023/09/21 15:21:46 by lgomez-g         ###   ########.fr       */
+=======
+/*   Updated: 2023/09/19 13:51:03 by franciscogomez   ###   ########.fr       */
+>>>>>>> d18e74f9a0c63f4ce7efb508becaece888e0e01b
 /*                                                                            */
 /* ************************************************************************** */
 
